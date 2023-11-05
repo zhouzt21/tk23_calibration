@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <!-- Due to the different rules for mesh search in gazebo and rviz2, two xacro files are created to designate mesh path -->
+    <xacro:property name="stl_path" value="package://tinker_description/meshes/tinker_base_coarse.stl" />
+    <xacro:macro name="steering_link_visual_mesh" params="name">
+        <mesh filename="package://tinker_description/meshes/DAE/suspension/${name}_link.dae"/>
+    </xacro:macro>
+    <xacro:macro name="steering_link_collision_mesh">
+        <mesh filename="package://tinker_description/meshes/STL/suspension/sus_link.stl"/>
+    </xacro:macro>
+    <xacro:macro name="wheel_link_visual_mesh">
+        <mesh filename="package://tinker_description/meshes/DAE/wheel/wheel_link.dae"/>
+    </xacro:macro>
+    <xacro:macro name="wheel_link_collision_mesh">
+        <mesh filename="package://tinker_description/meshes/STL/wheel/robot_wheel.stl"/>
+    </xacro:macro>
+</robot>

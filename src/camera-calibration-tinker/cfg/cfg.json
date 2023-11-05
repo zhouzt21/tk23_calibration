@@ -1,0 +1,33 @@
+{
+  "tag_size": 0.050,
+  "__tag_size": "tag_size指的是手眼标定时机械臂末端抓取的tag的大小(m为单位)",
+  "camera_matrix": [
+    [ 908.9865, 
+      0,
+      645.2748
+    ],
+    [
+      0 ,
+      910.0356 , 
+      369.6420
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "__camera_matrix": "相机内参矩阵",
+  "distortion_coefficients": [
+    [
+      0.1331,
+      -0.2352,
+      0,
+      0,
+      0
+    ]
+  ],
+  "__distortion_coefficients": "相机畸变矩阵",
+  "rotate_order": "zyx",
+  "__rotate_order": "进行偏移标定时的旋转顺序,先绕z轴旋转,再绕y轴旋转,最后绕x轴旋转"
+}

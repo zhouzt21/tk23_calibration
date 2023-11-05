@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="tinker_base">
+
+  <xacro:property name="stl_trans_xyz" value="0.32 0.3 -0.23" />
+  <xacro:property name="stl_rotate_rpy" value="0. 0. 3.1415926" />
+  <xacro:property name="stl_viz_scale" value="0.001 0.001 0.001" />
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="${stl_trans_xyz}" rpy="${stl_rotate_rpy}" />
+      <geometry>
+        <mesh
+          filename="package://tinker_description/meshes/tinker_base.stl"
+          scale="${stl_viz_scale}" />
+      </geometry>
+      <material name="">
+        <color
+          rgba="0.6 0.6 0.6 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="${stl_trans_xyz}" rpy="${stl_rotate_rpy}" />
+      <geometry>
+        <mesh
+          filename="package://tinker_description/meshes/tinker_base.stl"
+          scale="${stl_viz_scale}" />
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="base_link_inertial">
+    <inertial>
+      <origin xyz="0 0 0.4" rpy="0 0 0" />
+      <mass value="15" />
+      <inertia ixx="0.3" ixy="0" ixz="0" iyy="0.3" iyz="0" izz="0.3" />
+    </inertial>
+  </link>
+  <joint name="base_to_base" type="fixed">
+    <parent link="base_link" />
+    <child link="base_link_inertial" />
+    <origin xyz="0.02 0 0" />
+  </joint>
+
+  <link name="laser" />
+  <xacro:property name="urg_front_trans_xyz" value="0.25 0. 0.25" />
+  <joint name="base_to_urg_front" type="fixed">
+    <parent link="base_link" />
+    <child link="laser" />
+    <origin xyz="${urg_front_trans_xyz}" />
+  </joint>
+
+
+  <!-- Model used for real control, no wheel inertia needed -->
+  <!-- <xacro:macro name="wheel_gen" params="name prefix_1 prefix_2">
+    <joint name="${name}_wheel_joint" type="continuous">
+      <origin rpy="0 0 ${(prefix_2 + 1) / 2 *pi}" xyz="${prefix_1*0.22} ${prefix_2*0.17} 0.07"/>
+      <parent link="base_link_inertial"/>
+      <child link="${name}_wheel_link"/>
+      <limit effort="1.5" velocity="20"/>
+      <axis xyz="0 ${-1 * prefix_2} 0"/>
+    </joint>
+
+    <link name="${name}_wheel_link"/>
+  </xacro:macro>
+
+  <xacro:wheel_gen name="fl" prefix_1="1" prefix_2="1" />
+
+  <xacro:wheel_gen name="fr" prefix_1="1" prefix_2="-1" />
+
+  <xacro:wheel_gen name="rl" prefix_1="-1" prefix_2="1" />
+
+  <xacro:wheel_gen name="rr" prefix_1="-1" prefix_2="-1" /> -->
+
+</robot>
